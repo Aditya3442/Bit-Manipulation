@@ -1,0 +1,27 @@
+class Solution {
+
+    public static boolean check(int pattern , int[] arr) {
+        int count = 0;
+        for(int x : arr) {
+            if((pattern & x) == pattern) {
+                count++;
+            }
+            if(count == 2)
+              return true;
+        }
+        return false;
+    }
+    // Function for finding maximum AND value.
+    public static int maxAND(int arr[], int N) {
+
+        // Your code here
+        int ans = 0;
+        for(int i= 16; i >= 0; i--) {
+            
+            if(check(ans | (1 << i) , arr)) {
+                ans |= 1 << i;
+            }
+        }
+        return ans;
+    }
+}
